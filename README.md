@@ -1,2 +1,5 @@
-Working out a first draft to convert radio buttons to checkboxes inside show if questions.  
-1st solution is to create nested if in code block but hoping there is a better way.
+Portion of divorce interview that asks about custody and support and for each one ordered
+allocates to whom custody should be ordered and
+for whom support should be ordered.
+
+somewhat complex series.

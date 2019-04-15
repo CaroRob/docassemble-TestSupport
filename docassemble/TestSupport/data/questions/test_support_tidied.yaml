@@ -1,0 +1,41 @@
+mandatory: True
+code: |
+  some_event
+---
+question:   
+  Custody
+fields: 
+  - "Grant custody of the child/ren?": custody_grant
+    datatype: yesnoradio
+  - "Who should have custody of the child/ren?": custody
+    input type: radio
+    choices:
+      - Plaintiff
+      - Defendant
+    show if: custody_grant
+---
+question: |
+  Support
+fields: 
+  - "Order support?": support_order
+    datatype: yesnoradio
+  - "For whom should support be ordered?": support
+    input type: radio
+    choices:
+      - Plaintiff
+      - Children
+      - Plaintiff and Children
+    show if: support_order 
+---
+question: Here is your document.
+event: some_event
+attachment:
+  - name: divorce_complaint
+    filename: divorce_complaint
+    pdf template file: divorce_complaint.pdf
+    field code:
+      - "custody_grant": custody_grant
+      - "custody": showif('custody', custody_grant, 'None')
+      - "support_order": support_order
+	    - "support_children": support == 'Children' or support == 'Plaintiff and Children' if support_order else False
+      - "support_plaintiff": support == 'Plaintiff' or support == 'Plaintiff and Children' if support_order else False

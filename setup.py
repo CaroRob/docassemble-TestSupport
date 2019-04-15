@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.TestSupport',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='Working out a first draft to convert radio buttons to checkboxes inside show if questions.  \r\n1st solution is to create nested if in code block but hoping there is a better way.',
+      long_description='Portion of divorce interview that asks about custody and support and for each one ordered\r\nallocates to whom custody should be ordered and\r\nfor whom support should be ordered.\r\n\r\nsomewhat complex series.',
       long_description_content_type='text/markdown',
       author='Caroline Robinson',
       author_email='crobinson@mlri.org',
