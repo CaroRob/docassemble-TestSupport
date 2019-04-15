@@ -1,0 +1,88 @@
+mandatory: True
+code: |
+  if custody_radio == 'Yes':
+    custody_grant = True
+  else:
+    custody_grant = False
+    custody = 'None'
+  results  
+  if support_order == 'No':
+    support = 'None'
+    support_plaintiff = False
+    support_children = False
+  else:
+    if support == "Plaintiff":
+      support_plaintiff = True
+      support_children = False
+    elif support == "Plaintiff":
+      support_plaintiff = False
+      support_children = True
+    else:
+      support_plaintiff = True
+      support_children = True
+  results_support
+  some_event
+---
+question:   
+  Custody
+fields: 
+  - "Grant custody of the child/ren?": custody_radio
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - "Who should have custody of the child/ren?": custody
+    input type: radio
+    choices:
+      - Plaintiff
+      - Defendant
+    js show if: |
+      val('custody_radio') == 'Yes'  
+---
+mandatory: True
+question: |
+  value of custody_grant: ${custody_grant}
+subquestion: |
+  value of custody: ${custody}
+field: results
+---
+question: |
+  Support
+fields: 
+  - "Order support?": support_order
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - "For whom should support be ordered?": support
+    input type: radio
+    choices:
+      - Plaintiff
+      - Children
+      - Plaintiff and Children
+    show if: 
+      variable: support_order 
+      is: Yes
+---
+mandatory: True
+question: |
+  value of support_order: ${support_order}
+subquestion: |
+  value of support: ${support}
+field: results_support
+---
+question: Here is your document.
+event: some_event
+attachment:
+  - name: divorce_complaint
+    filename: divorce_complaint
+    pdf template file: divorce_complaint.pdf
+    fields:
+      - "custody_grant": ${custody_grant}
+      - "custody": ${custody}
+      - "support_order": ${support_order}
+      - "support_plaintiff": ${support_plaintiff}
+      - "support_children": ${support_children}
+
+     
+     
