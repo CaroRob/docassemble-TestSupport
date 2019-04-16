@@ -1,5 +1,6 @@
 mandatory: True
 code: |
+  custody_grant
   some_event
 ---
 question:   
